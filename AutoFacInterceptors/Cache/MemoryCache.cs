@@ -1,7 +1,8 @@
-﻿using System;
+﻿using AutoFacInterceptors.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace AutoFacInterceptors
+namespace AutoFacInterceptors.Cache
 {
     public class MemoryCache : ICache
     {

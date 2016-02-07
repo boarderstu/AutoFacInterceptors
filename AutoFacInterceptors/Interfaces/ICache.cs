@@ -1,4 +1,4 @@
-﻿namespace AutoFacInterceptors
+﻿namespace AutoFacInterceptors.Interfaces
 {
     public interface ICache
     {
