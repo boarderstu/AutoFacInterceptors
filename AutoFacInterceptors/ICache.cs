@@ -1,6 +1,6 @@
 ﻿namespace AutoFacInterceptors
 {
-    internal interface ICache
+    public interface ICache
     {
         T Get<T>(string key) where T : class; 
 

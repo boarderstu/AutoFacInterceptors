@@ -31,6 +31,16 @@ namespace AutoFacInterceptors
 
         public void Set(string key, object item)
         {
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                throw new ArgumentNullException("Key");
+            }
+
+            if (item == null)
+            {
+                throw new ArgumentNullException("Item");
+            }
+
             //Extra glitter to overwrite an existing key - 
             // in a normal cache implementation, this will be done for you.
             if (_internalCache.ContainsKey(key))
