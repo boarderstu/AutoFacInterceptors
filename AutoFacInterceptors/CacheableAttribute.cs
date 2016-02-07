@@ -9,5 +9,6 @@ namespace AutoFacInterceptors
     [AttributeUsage(AttributeTargets.Method)]
     public class CacheableAttribute : Attribute
     {
+        public string Key { get; set; }
     }
 }

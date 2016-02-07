@@ -17,7 +17,7 @@ namespace AutoFacInterceptors
             _cache = cache;
         }
 
-        [Cacheable]
+        [Cacheable(Key = "GetMessage")]
         public string GetMessage(int id)
         {
             Console.WriteLine($"Message for {id}");

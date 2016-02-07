@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheableAttribute.cs" />
+    <Compile Include="Interceptors\CacheableInterceptor.cs" />
     <Compile Include="Interfaces\ICache.cs" />
     <Compile Include="Cache\MemoryCache.cs" />
     <Compile Include="Program.cs" />

@@ -51,5 +51,10 @@ namespace AutoFacInterceptors.Cache
 
             _internalCache.Add(key, item);
         }
+
+        public bool Exists(string key)
+        {
+            return _internalCache.ContainsKey(key);
+        }
     }
 }
