@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AutoFacInterceptors;
+using AutoFacInterceptors.Cache;
+using AutoFacInterceptors.Interfaces;
 
 namespace UnitTests
 {
