@@ -1,5 +1,4 @@
-﻿using AutoFacInterceptors.Cache;
-using AutoFacInterceptors.Interfaces;
+﻿using AutoFacInterceptors.Interfaces;
 using System;
 
 namespace AutoFacInterceptors
@@ -20,7 +19,7 @@ namespace AutoFacInterceptors
         [Cacheable(Key = "GetMessage")]
         public string GetMessage(int id)
         {
-            Console.WriteLine($"Message for {id}");
+            Console.WriteLine($"GetMessage method for {id}");
             return $"Message for {id}";
         }
     }

@@ -1,8 +1,9 @@
-﻿using AutoFacInterceptors.Interfaces;
-using Autofac;
-using AutoFacInterceptors.Cache;
+﻿using Autofac;
 using Autofac.Extras.DynamicProxy2;
+using AutoFacInterceptors.Cache;
 using AutoFacInterceptors.Interceptors;
+using AutoFacInterceptors.Interfaces;
+using System;
 
 namespace AutoFacInterceptors
 {
@@ -15,19 +16,35 @@ namespace AutoFacInterceptors
             var worker = di.Resolve<IWorker>();
 
             var message = worker.GetMessage(12);
+
+            message = worker.GetMessage(13);
+            Console.WriteLine(message);
+
+
+            message = worker.GetMessage(13);
+            Console.WriteLine(message);
+
+            message = worker.GetMessage(13);
+            Console.WriteLine(message);
+
+            message = worker.GetMessage(14);
+            Console.WriteLine(message);
+            message = worker.GetMessage(125);
+            Console.WriteLine(message);
+            Console.ReadKey();
         }
 
         private static IContainer Build()
         {
             ContainerBuilder builder = new ContainerBuilder();
 
-            builder.RegisterType<CacheableInterceptor>().As<CacheableInterceptor>();
+            builder.RegisterType<CacheableInterceptorWithKey>().As<CacheableInterceptorWithKey>();
 
             builder.RegisterType<MemoryCache>().As<ICache>();
 
             builder.RegisterType<Worker>().As<IWorker>()
                 .EnableInterfaceInterceptors()
-                .InterceptedBy(typeof(CacheableInterceptor));
+                .InterceptedBy(typeof(CacheableInterceptorWithKey));
 
             return builder.Build();
         }
