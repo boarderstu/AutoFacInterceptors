@@ -7,7 +7,7 @@ using AutoFacInterceptors.Interfaces;
 namespace UnitTests
 {
     [TestClass]
-    public class UnitTest1
+    public class CacheUnitTests
     {
         [TestMethod]
         public void CacheSet_Pass()
