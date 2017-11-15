@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Autofac.Extras.DynamicProxy2;
+using Autofac.Extras.DynamicProxy;
 using AutoFacInterceptors.Cache;
 using AutoFacInterceptors.Interceptors;
 using AutoFacInterceptors.Interfaces;
@@ -25,11 +25,6 @@ namespace AutoFacInterceptors
             Console.WriteLine(message);
 
             message = worker.GetMessage(13);
-            Console.WriteLine(message);
-
-            message = worker.GetMessage(14);
-            Console.WriteLine(message);
-            message = worker.GetMessage(125);
             Console.WriteLine(message);
             Console.ReadKey();
         }

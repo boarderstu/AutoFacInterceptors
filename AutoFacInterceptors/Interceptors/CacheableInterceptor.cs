@@ -6,43 +6,6 @@ using System.Text;
 
 namespace AutoFacInterceptors.Interceptors
 {
-    public class CacheableInterceptor : IInterceptor
-    {
-        ICache _cache;
-        public CacheableInterceptor(ICache cache)
-        {
-            _cache = cache;
-        }
-        public void Intercept(IInvocation invocation)
-        {
-            var attr = Attribute.GetCustomAttribute(invocation.MethodInvocationTarget, typeof(CacheableAttribute)) as CacheableAttribute;
-
-            if (attr == null)
-            {
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(attr.Key))
-            {
-                //Call the method, but don't cache anything and log
-                invocation.Proceed();
-            }
-
-            if (_cache.Exists(attr.Key))
-            {
-                var cacheResult = typeof(ICache).GetMethod("Get").MakeGenericMethod(invocation.Method.ReturnType)
-                .Invoke(_cache, new object[] { attr.Key });
-                invocation.ReturnValue = cacheResult;
-
-                return;
-            }
-
-            invocation.Proceed();
-            _cache.Set(attr.Key, invocation.ReturnValue);
-
-        }
-    }
-
     public class CacheableInterceptorWithKey : IInterceptor
     {
         ICache _cache;
@@ -81,7 +44,7 @@ namespace AutoFacInterceptors.Interceptors
 
             var cacheKey = CreateKey(invocation);
 
-            Console.WriteLine($"Key: {cacheKey}");
+            Console.WriteLine($"Interception Key: {cacheKey}");
 
 
             if (_cache.Exists(cacheKey))
@@ -90,11 +53,14 @@ namespace AutoFacInterceptors.Interceptors
                 .Invoke(_cache, new object[] { cacheKey });
                 invocation.ReturnValue = cacheResult;
                 Console.WriteLine("CACHE HIT");
+                Console.WriteLine("Returning");
                 return;
             }
 
             Console.WriteLine("CACHE MISS");
+            Console.WriteLine("Method running");
             invocation.Proceed();
+            Console.WriteLine("Setting Cache");
             _cache.Set(cacheKey, invocation.ReturnValue);
 
         }
